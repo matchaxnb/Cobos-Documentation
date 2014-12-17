@@ -1,0 +1,84 @@
+\chapter{Local Compilation}
+
+\section{COLORS program}
+
+\begin{enumerate}
+\item Open the program ``colors.cbl'' from ``Local\_compilation'' project with the COBOL Editor by right-clicking on it in the ``Navigator'' view and by choosing \textbf{``Open With \RHD~COBOL Editor''}.
+
+\item Select menu \textbf{``\mxproduct~\RHD~Local Compilation''}
+\\\mximgtext{lcomp-01.png} \parbox{8cm}{or click on the ``Local Compilation'' button placed in the toolbar \mximgtext{lcomp-02.png}.}
+
+\item Once the compilation has been achieved, this popup is displayed.
+\mximage{lcomp-03.png}
+Just click on ``OK'' button.
+
+\item In the ``Navigator'' view, you should see the executable ``colors.exe'' in ``Output'' folder.
+\mximage{lcomp-04.png}
+
+\item Right-click on ``colors.exe'' file and select \textbf{``Run As \RHD~COBOL Application''}
+\mximage{lcomp-05.png}
+
+\item A console opens in which the program runs
+\footnote{``The BLINK attribute modifies the visual appearance of the BACKGROUND-COLOR specification. The Windows console does not support blinking, so the visual effect of BLINK in the Windows version of OpenCOBOL is to provide the same sixteen colors to the BACKGROUND-COLOR palette as are possible with FOREGROUND-COLOR combined with LOWLIGHT/HIGHLIGHT.'' [OpenCOBOL-1.1-06FEB2009-Programmers-Guide]}.
+\mximage{lcomp-06.png}
+Press ENTER to quit the program.
+
+\item Press any key to close the console.
+\end{enumerate}
+
+
+\section{CUSTLOAD program}
+
+\begin{enumerate}
+\item In ``Navigator'' view, select ``Custload.cob'' from ``Local\_compilation'' project, right-click and select \textbf{``Properties''}
+
+\item Select \textbf{``\mxproduct~\RHD~COBOL Compiler''} and check \textbf{``Enable resource specific settings''}
+\mximage{lcomp-07.png}
+In ``Language'' tab, select \textbf{``MVS Compatible''} for a specific dialect and push ``OK'' button.
+
+\item Open the program ``Custload.cob'' from ``Local\_compilation'' project with the COBOL Editor by right-clicking on it in the ``Navigator'' view and by choosing \textbf{``Open With \RHD~COBOL Editor''}.
+
+\item\label{step:lcomp} In the editor, Right-click and select \textbf{``\mxproduct~\RHD~Local Compilation''}.
+
+\item Once the compilation has been achieved, this popup is displayed.
+\mximage{lcomp-03.png}
+Just click on ``OK'' button.
+
+\item In the ``Navigator'' view, you should see the executable ``Custload.exe'' in ``Output'' folder.
+\mximage{lcomp-08.png}
+
+\item Right-click on ``Custload.exe'' file and select \textbf{``Run As \RHD~COBOL Application''}.
+
+\item A console opens in which the program runs.
+\mximage{lcomp-09.png}
+The program exits\footnote{ Sometimes the program hangs. Press Ctrl+C to stop it immediately.} with INPUT-FILE STATUS = 35.
+
+\item Press any key to close the console.
+
+\item Modify the program to absorb the end of line characters contained in the input file. Under Windows, the end of line consists of two characters: CR \& LF. So, in line 54, replace \textbf{X(10)} by \textbf{X(12)}.
+\mximage{lcomp-10.png}
+
+\item Save and compile the program again as in step \ref{step:lcomp}.
+
+\item Right-click on ``Custload.exe'' file and select \textbf{``Run As \RHD~Run Configuration\dots ''}.
+
+\item Select \textbf{``COBOL Application''} and Press the \textbf{``New''} button to create a new configuration.
+\mximage{lcomp-11.png}
+
+\item Name the configuration and select Custload.exe in \textbf{``Main''} tab.
+\mximage{lcomp-12.png}
+
+\item Select \textbf{``Environment''} tab and add 2 variables CUSTIN and CUSTOUT as shown in the following window:
+\mximage{lcomp-13.png}
+Click on \textbf{``Apply''} button to save the configuration.
+
+\item Push \textbf{``Run''} button to execute the program.
+\mximage{lcomp-14.png}
+Result: 47 input records, 45 output records, 2 anomalies
+
+\item Press any key to close the console.
+
+\item In ``Navigator'' view, refresh ``Local\_compilation'' project and check the presence of `fscli.indexed'
+\mximage{lcomp-15.png}
+
+\end{enumerate}

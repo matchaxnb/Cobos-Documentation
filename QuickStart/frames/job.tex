@@ -1,0 +1,41 @@
+\chapter{Managing a job}
+
+We need to submit a job and retrieve the result of its execution. We'll show you how to do it with an easy example.
+
+\section{Submitting a jcl}
+
+\begin{enumerate}
+\item Edit the file \textit{Sample.jcl}, adapt the JOB card (replace $<$userid$>$ by your mainframe's user id in uppercase) and save it.
+\mximage{job-01.png}
+
+\item Submit the JCL by using the \mxproduct~command \textbf{``1. FTP access \RHD~8. Running a JCL''}.
+\mximage{job-02.png}
+
+\item Fill the form and press \textbf{``OK''}:
+\mximage{job-03.png}
+
+	\begin{enumerate}
+	\item The filename is $<$jclfilename$>$.$<$jobid$>$.sysout in the project $<$hostname$>$, folder SYSOUT.E.g.: Sample.jcl \pointer~Sample.JOB00291.sysout
+	\mximage{job-04.png}
+	\item If no wait, a pop-up is displayed so you can check status and retrieve output later (see below).
+	\mximage{job-05.png}
+	Here Jobid is JOB00297.
+	\end{enumerate}
+
+\end{enumerate}
+
+\section{ Retrieving a sysout}
+
+We'll get the sysout of the previously submitted job.
+\begin{enumerate}
+\item Retrieve the sysout of job by using the \mxproduct command \textbf{``1. FTP access \RHD~9. Get Job SYSOUT''}.
+\mximage{job-06.png}
+
+\item Fill the form and press \textbf{``OK''}:
+\mximage{job-07.png}
+Here we want to retrieve the sysout of job00297.
+
+\item The sysout is opened in the Text Editor and is stored in the project $<$hostname$>$, folder \textit{SYSOUT}.
+\mximage{job-08.png}
+
+\end{enumerate}

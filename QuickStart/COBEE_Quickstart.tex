@@ -1,0 +1,122 @@
+%% 
+%% This is file `COBEE_Quicksart.tex' v 1.1
+%%
+%% Author Claude BIANCHI
+%%   October 16, 2014
+%%
+%% COBEE Quick Start guide
+%%
+%% version 1.0, 2014/10/10:
+%%              - first release
+%% version 1.1, 2014/10/10:
+%%              - COBEE V3.5
+%%
+%%
+
+
+\documentclass[a4paper,10pt]{report}
+
+%-------------------------------------------------------------------------------
+% set Cobos colors
+\newcommand{\mxprimarycolor}{28,84,147}
+\newcommand{\mxsecondarycolor}{117,109,105}
+
+\usepackage{metrixware}
+%-------------------------------------------------------------------------------
+% set tokens about this document (product name, version, author, etc.)
+\newcommand{\mxproduct}{COBEE}
+\newcommand{\mxversion}{3.5}
+\newcommand{\mxcompany}{EasiRun Europa GmbH}
+\newcommand{\mxurl}{http://easirun.com/}
+\newcommand{\mxdate}{\number\month/\number\day/\number\year}
+\newcommand{\mxauthor}{Claude BIANCHI}
+\newcommand{\mxrevision}{018}
+
+% set tokens for mxwcover
+\newcommand{\mxtitle}{\mxproduct{ Quick Start}}
+\newcommand{\mxsubtitle}{version \mxversion}
+\newcommand{\mxcover}{cover-75.png}
+\newcommand{\mxlogo}{logo.png}
+\newcommand{\mxabout}{ %
+\ovalbox{ %
+\begin{minipage}{0.25\textwidth}
+\begin{center}
+Revision: \mxrevision
+\par
+Date: \mxdate
+\end{center}
+\end{minipage}
+}}
+%-------------------------------------------------------------------------------
+% images directorties
+\graphicspath{{./images/}{./images/\mxproduct/}}
+%-------------------------------------------------------------------------------
+% First page
+\lhead{}
+\chead{}
+\rhead{}
+\include{mxwcover}
+
+% Defines Header & footer for other pages
+\lhead{}
+\chead{}
+\rhead{\bfseries\textcolor{ColorOneDoc}{\mxtitle}}
+\cfoot{\bfseries\textcolor{ColorOneDoc}{\thepage/\pageref*{LastPage}}}
+
+% Completely prevent breaking of footnotes
+\interfootnotelinepenalty=10000
+
+%-------------------------------------------------------------------------------
+% Start document
+\begin{document}
+
+% note in left marge
+\reversemarginpar
+
+\pdfbookmark[0]{\mxtitle}{doc}
+
+\ThisLLCornerWallPaper{1.00}{foot.png}
+\maketitle{ColorOneDoc}{white}
+\ClearWallPaper
+%\pagecolor{white}
+\onehalfspacing
+%\thispagestyle{empty} %% Sauter la numérotation
+
+\clearpage\newpage
+
+%\setcounter{page}{1} %% Reactiver la numérotation
+\pagestyle{fancy}
+\onehalfspacing
+
+
+\ULCornerWallPaper{1.00}{head.png}
+\LLCornerWallPaper{1.00}{foot.png}
+
+
+\pdfbookmark[1]{Reference}{ref}
+\input{frames/reference}
+
+\pdfbookmark[1]{Copyright}{copy}
+\input{frames/copyright}
+
+\newpage
+
+\pdfbookmark[1]{Contents}{contents}
+\tableofcontents
+
+\mainmatter
+\include{frames/introduction}
+\include{frames/installation}
+\include{frames/editing}
+\include{frames/checksyntax}
+\include{frames/unfold}
+\include{frames/je3270}
+\include{frames/cfgftp}
+\include{frames/complocalsrc}
+\include{frames/pds}
+\include{frames/job}
+\include{frames/localcomp}
+
+\end{document}
+
+

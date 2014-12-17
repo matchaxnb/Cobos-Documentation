@@ -1,0 +1,40 @@
+\chapter{Compiling a local source on mainframe}
+
+\mxproduct~is specially designed to easily develop mainframe applications. Also, you can compile a local program on the mainframe and retrieve the SYSOUT locally. 
+
+The error messages are displayed in the Problems view synchronized with the source in the editor.
+
+Z/Navigator plug-in is designed to process mainframe files directly from eclipse but requires scripts installation on mainframe.
+
+If you are comfortable with JCL editing, try adapting the JCL sample supplied for a batch program. If not, feel free to go to next sequence: \nameref{chap:PDS} page \pageref{chap:PDS}.
+
+In the PROJECT\_SAMPLE project:
+
+\begin{enumerate}
+\item Open \textit{Custload.cob} in COBOL Editor.
+
+\item Open \textit{compcob.jcl} in JCL Editor
+\mximg{1}{complocalsrc-01.png}\\[0.5ex]
+\textit{Custload} program requires neither CICS nor SQL. So, you can leave the comment lines in STEPLIB.\\
+Check the COBOL STEPLIB and, if necessary adapt the DSNAME according with the version of Enterprise COBOL in use (here IGY420 qualifier for COBOL 4.2 compiler).
+\mximg{1}{complocalsrc-02.png}\\[0.5ex]
+\textit{Custload} program does not require copies and object modules. So, leave the comment lines in SYSLIB (COBOL and LINKED).
+
+\item Select Custload.cob tab (\mximgtext{complocalsrc-03.png}).
+
+\item Double-click on \textbf{``1. FTP access \RHD~6. Compile local source''} in the Commands view:
+\mximage{complocalsrc-04.png}
+
+\item Fill in the form fields and select \textit{compcob.jcl} as JCL template with the ``\textbf{browse}'' button:
+\mximage{complocalsrc-05.png}
+
+\item Click on ``\textbf{OK}'' button to launch the compilation.
+
+\item See the result in the ``\textbf{Problems}'' view:
+\mxlargeimage{complocalsrc-06.png}
+You should see a warning at line 45.
+
+\item On the warning line, Right-click and select ``Open Sysout'' in context menu:
+\mximage{complocalsrc-07.png}
+The sysout opens in the text editor and the warning line is selected.
+\end{enumerate}

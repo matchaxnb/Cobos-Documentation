@@ -1,0 +1,20 @@
+\chapter{Using 3270 Emulator inside eclipse}
+
+Powerful \mxproduct~extension is designed for mainframe COBOL development enhancement. First of all, 3270 access to mainframe remains the basic way of working with a mainframe (but not the most comfortable, as already shown in this document)
+
+\begin{enumerate}
+\item Go to \textbf{``Window \RHD~Preferences \RHD~\mxproduct~\RHD~je3270''} and adjust the values for your environment (at least, Host name field must be filled with IP address or DNS name of your host)
+\mximage{je3270-01.png}
+You will be able to define a customized key map.
+
+\item Launch the 3270 emulator from menu \textbf{``\mxproduct~\RHD~je3270 Terminal session''}:
+\mximage{je3270-02.png}
+
+\item Your favorite welcome screen is displayed! Enter your credentials.
+\mximage{je3270-03.png}
+You are now at home in your usual mainframe environment BUT inside eclipse!
+\\[1.5ex]
+A button bar appears above the je3270 window with useful functions. Additional shortcuts are defined in keymap file (see Help Contents / 3270 Terminal for further information)
+\\[2ex]
+\textit{Note: F10 key is well interpreted by je3270 but in the same time trapped by eclipse, activating File Menu. You have to retype F10 to give focus back to je3270. A bottle of good champagne for a fix of this issue!}
+\end{enumerate}

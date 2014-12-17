@@ -1,0 +1,68 @@
+\chapter{Editing a COBOL program}
+
+\begin{enumerate}
+\item Open the program ``Custload.cob'' from PROJECT\_SAMPLE project with the COBOL Editor by right-clicking on it in the ``Navigator'' view and by choosing \textbf{``Open With~\RHD~COBOL Editor''}
+\mximage{edit-01.png}
+Custload.cob shows off in the Editor.
+\mximage{edit-02.png}
+
+\item  Activate the Outline View on the right side. Click on the word PROCEDURE in Outline View.
+\mximage{edit-03.png}
+(for ``mainframers'') Forget ISPF!
+
+\item In the editor, put your mouse above the word CNTR-INPUT-FILE on line 99
+\mximage{edit-04.png}
+You can see line definition of the variable under the mouse pointer.
+
+\item Click on variable CNTR-INPUT-FILE on line 99 and hit \textbf{F3}
+\mximage{edit-05.png}
+Focus is given to the actual line definition in the program (or in a Copy as well)
+\\[1.5ex]
+\mxtip{To view all occurrences of this variable, select menu \textbf{``Search \RHD~Text \RHD~File''}.}
+\mximage{edit-06.png}
+Double clicking on an occurrence in the Search View will position the editor on this occurrence, of course.
+
+\item Let's insert a statement: place the cursor at the end of line 94 and hit enter.Key `di' and hit \textbf{Ctrl + Space}.
+\mximage{edit-07.png}
+Variables and labels along with their definition line are shown first, then COBOL keywords with or without pattern.
+
+\item Double Click on DISPLAY statement pattern
+\mximage{edit-08.png}
+
+\item Now, replace identifier by any string you want\dots e.g.: `Hello world!'
+\mximage{edit-09.png}
+
+\item Finally, save the file (press \textbf{Ctrl + S} or push \mximgtext{save.png} button from the toolbar).
+
+\end{enumerate}
+
+
+\pagebreak
+\underline{The main additional keyboard shortcuts are:}
+
+\begin{itemize}[label=\textbullet,font=\color{ColorOneDoc},leftmargin=1cm]
+\item \textbf{Ctrl + Space}: invoke auto-completion.
+
+\item \textbf{Ctrl + Shift + Y}: change selected characters to lowercase
+
+\item \textbf{Ctrl + Shift + X}: change selected characters to uppercase
+
+\item \textbf{Ctrl + Shift + Z}: set CAPS ON (like in ISPF Editor)
+
+\item \textbf{Ctrl + L}: go to the N line in a source file
+
+\item \textbf{Alt + Shift + A}: Toggle Block Selection (useful for block indentation updating)
+
+\item \textbf{Ctrl + Q}: return to the last edition in a file
+
+\item \textbf{Ctrl + E}: go to another opened editor. A pop-up window appears with the choice of opened editors
+
+\item \textbf{F3}: go to the definition of the variable
+
+\item \textbf{Ctrl + Shift + V}: check syntax of the code (shortcut for menu ``\mxproduct~\RHD~\mximgtext{checksyntax.png} Check Syntax'')
+
+\item \textbf{Ctrl + Shift + U}: unfold of the code (shortcut for menu ``\mxproduct~\RHD~\mximgtext{unfold.png} Unfold COBOL source'')
+
+\item \textbf{Ctrl + Shift + C}: remote compilation\footnote{Need a Mainframe.} (shortcut for menu ``\mxproduct~\RHD~\mximgtext{remotecomp.png} Compilation'')
+\end{itemize}
+

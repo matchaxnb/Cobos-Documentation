@@ -1,0 +1,73 @@
+\chapter{Introduction}
+
+The purpose of this guide is to explain how to install, configure and use the Eclipse plug-ins \mxproduct.
+
+You will edit and compile both local COBOL programs and mainframe COBOL programs WITHOUT INSTALLATION OF MAINFRAME RESOURCES.
+
+\section{What's new}
+
+\textbf{Improvements in \mxproduct~\mxversion{:}}
+
+\begin{itemize}
+\item \mxproduct~\mxversion~is fully qualified with the very latest Eclipse version such as Kepler (4.3) and Luna (4.4).
+
+\item Support of listings coming from the remote Micro Focus\textregistered~compiler:\\
+the COBOL programs and copybooks are marked with the compilation messages in the Problems view.
+
+\item Preprocessing capabilities:
+\begin{itemize}
+\item Custom processing can be called before the GNU Cobol Check Syntax and Unfolding.
+
+\item A standard post processing is proposed so that the messages are marked in the right place in the source code.
+\end{itemize}
+
+(a support of custom macro instructions has been implemented and distributed as a custom plug-in)
+\end{itemize}
+
+\vspace{0.5cm}
+\textbf{This release solves the following bugs:}
+
+
+\begin{description}
+\item[5320] FTP Access supports use of non standard TCP/IP port
+
+\end{description}
+\newpage
+
+\section{Prerequisites}
+
+Ensure that the workstation has at least 2GB of RAM.
+
+Supported OS: Windows XP SP3, Windows 7.
+
+Ensure that a Java JRE 6 or 7 is present on the workstation.(JRE 8 is not yet fully qualified.)
+
+This \mxproduct~\mxversion~Release must be installed on Eclipse Helios 3.6.2, Indigo 3.7.2, Kepler 4.3.x or Luna 4.4.x (32bits or 64bits).
+
+\textbf{FTP Access module requires installation of a REXX interpreter on the workstation }such as
+\href{http://sourceforge.net/projects/regina-rexx/files/regina-rexx/}{Regina REXX Interpreter} (version 3.6 or 3.8.2 recommended)\footnote{
+For the users of Open Object Rexx (ooRexx), some scripts of \mxproduct~are not fully compatible.}.
+\\[1.5ex]
+
+Resources:
+
+You downloaded \textbf{\mxproduct\_\mxversion.x\_Release-demo.zip }
+\ifthenelse{\equal{\mxproduct}{Cobos}}{
+or \textbf{\mxproduct\_\mxversion.x\_Essentials-demo.zip}} from the
+\href{\mxurl}{\mxproduct~site}.
+
+Once you have unzipped the downloaded file, you've got the following directories and files:
+
+\begin{itemize}
+\item \textbf{Demo\_workspace} which contains preconfigured resources for this ``quickstart''
+
+\item \textbf{Products} which contains the plug-ins
+
+\item \textbf{\mxproduct\_V\mxversion\_DemoReadme.txt}
+
+\item \textbf{\mxproduct\_V\mxversion\_Quickstart.pdf}: this file!
+
+\item \textbf{\mxproduct\_V\mxversion\_User\_Guide.pdf}
+
+\item \textbf{releaseNotes.txt}
+\end{itemize}

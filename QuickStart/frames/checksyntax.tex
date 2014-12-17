@@ -1,0 +1,39 @@
+
+\chapter{Checking the syntax of a COBOL program}
+
+\section{CUSTLOAD program}
+
+\begin{enumerate}
+\item Now, we will check the syntax of the program ``Custload.cob''.
+
+\item Select menu \textbf{``\mxproduct~\RHD~Check syntax''}
+\\\mximgtext{check-01.png} \parbox{8cm}{or click on the ``check syntax'' button placed in the toolbar \mximgtext{check-02.png}\\or use the keyboard shortcut \textbf{``Ctrl + Shift + V''}.}
+
+\item Once the check syntax has been achieved, 4 warnings are found in this program.
+
+\item In the Problems view, expand the Warnings line to see the messages.
+\mxlargeimage{check-03.png}
+
+\item Simply double-clicking a message in the Problems view gives focus on the line in error in the COBOL editor.
+\mxlargeimage{check-04.png}
+\end{enumerate}
+
+
+\section{CF00P program}
+
+In general, COBOL programs contain copybooks. Let's see how it works in \mxproduct.
+
+\begin{enumerate}
+\item Open the program ``cf00p.cob'' from demuser.demo.cobol project with the COBOL Editor.
+\mximage{check-05.png}
+
+\item Check syntax (select menu \textbf{``\mxproduct~\RHD~Check syntax''} or push \mximgtext{checksyntax.png} or hit \textbf{``Ctrl + Shift + V''}).
+
+\item Once the check syntax has been achieved, 6 warnings are found in this program.
+\mxlargeimage{check-06.png}
+In the column ``Resource'', you can see that some messages refer to files outside the main program: these copybooks are included in the program at syntax checking.
+
+\item Double click on the warning of the copybook ``commarea.cob''. This copybook shows off in the COBOL Editor.
+\mximage{check-07.png}
+A marker is placed in front of the line addressed by the warning and the line is highlighted.
+\end{enumerate}

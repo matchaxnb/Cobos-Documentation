@@ -1,0 +1,69 @@
+\chapter{Unfolding a COBOL program}
+This function displays the original program including source code, copybooks and SQL includes which are used by the program. The expanded file (Unfolded) is opened in a new tab \underbar{in read-only mode}. The expanded copybooks are displayed on a yellow background, indicating their path on the start line beginning with ``++SCCOPY'' and ending with ``--SCCOPY''.
+
+\section{CF00P program}
+
+\begin{enumerate}
+\item Check that the program ``cf00p.cob'' is active in the COBOL Editor, select menu \textbf{``\mxproduct~\RHD~Unfold COBOL source''}
+\\\mximgtext{unfold-01.png} \parbox{8cm}{or click on the ``unfold'' button placed in the\\toolbar \mximgtext{unfold-02.png}\\or use the keyboard shortcut \textbf{``Ctrl + Shift + U''}.}
+
+\item After Unfold, you will get a new tab with the name ``cf00p.cob (Unfolded)''.
+\mximage{unfold-03.png}
+You can browse through the source code by clicking on the yellow markers on the right.
+\\[1.5ex]
+\mxtip{To view the list of copybooks, position the cursor over SCCOPY and select menu \textbf{``Search \RHD~Text \RHD~File''}.}
+
+\end{enumerate}
+
+\ifthenelse{\equal{\mxproduct}{Cobos}}{
+\vspace{1cm}
+\mxcaution{If you installed the \mxproduct~Essentials version you stop here.}\\
+To continue, you must have the \mxproduct~Release version.
+}
+
+\section{GESCOM program}
+
+OK, now let's see how we manage to make it with mainframe COBOL programs. For successful \textbf{Check syntax}, \textbf{Unfold}, \textbf{Auto-completion}, etc\dots  we need to access copybooks used by the programs we are working on.
+
+One solution is to replicate the copybooks in a network place, and configure the .cobos file.\\
+Note: if you want to understand how copybooks paths are specified, open the .cobos file. For more information, select menu \textbf{``Help \RHD~Help Contents \RHD~\mxproduct~\RHD~Chapter 5 Viewing and \dots~\RHD~Configuring a project''}.
+
+One another very simple solution is to retrieve copybooks from a compilation sysout. Let's run this scenario with a COBOL program we have compiled from \mxproduct~(and sysout is still available).
+
+\begin{enumerate}
+\item Open the program ``gescom.cob'' from demuser.demo.cobol project with the COBOL Editor.
+
+\item Unfold (select menu \textbf{``\mxproduct~\RHD~Unfold COBOL source''} or push \mximgtext{unfold.png} button).
+
+\item After Unfold, you will get a new tab with the name ``gescom.cob (Unfolded)'' but a popup shows off because copybooks are not available according to the paths specified in .cobos file:
+\mximage{unfold-04.png}
+
+\item Close the "gescom.cob (Unfolded)".
+
+\item If you want to look at the sysout content, you can retrieve the sysout in the Navigator View in demuser.demo.cobol/SYSOUT and double click on it.
+\mxlargeimage{unfold-05.png}
+The sysout is opened in the Text Editor.
+
+Warning: If you encounter "resource is out of sync \dots ", you have to press Refresh key (F5)
+
+\item Give back focus to ``gescom.cob'' and launch the \mxproduct~command \textbf{``1. FTP access \RHD~A. Generating local Copies''} from the Command view.
+\mximage{unfold-06.png}
+
+\item Select the sysout and click OK.
+\mximage{unfold-07.png}
+\textit{Note: in this example, we exclude CICS and DB2 copybooks.}
+
+\item A pop-up is displayed showing the list of copybooks and the generated JCL.
+\mximage{unfold-08.png}
+
+\item The copies and the JCL are stored along with the source file.
+\\\mximgtext{unfold-09.png}
+\txt<10cm>{Note: \mxproduct~don't look for copybooks systematically first in the directory of the program (if you want to explore this directory, you MUST specify it in the .cobos file). You can of course store the copybooks in another place.
+}
+
+\item Now, we can \textbf{unfold} the source file.
+\mximage{unfold-10.png}
+
+\end{enumerate}
+
+Note: Copybooks retrieving is useful also for Check Syntax, auto-completion and Hover.
