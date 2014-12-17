@@ -1,0 +1,221 @@
+%% 
+%% This is file `metrixware.sty' v 1.00
+%%
+%% Author Claude BIANCHI
+%%   October 3, 2014
+%% 
+%% Package for creation of Metrixware documentation
+%% based on the work of Antoine FLOC'H (TOCEA)
+%%
+%% version 1.00, 2014/10/03:
+%%               - first release
+%%
+%%
+%%===================================================================
+%% This uses these tokens:
+%% - mxprimarycolor: primary color
+%% - mxsecondarycolor: secondary color
+%% This defines these color tokens:
+%% - ColorOneDoc: alias of mxprimarycolor used by chapter, section, items enum level 1
+%% - ColorTwoDoc: alias of mxsecondarycolor used by items enum level 2
+%% - BlackDoc: color from Metrixware site (not used internally)
+%% - DarkGrayDoc: color from Metrixware site (not used internally)
+%% - LightGrayDoc: color from Metrixware site (not used internally)
+%%
+%% usage: in your main document, insert "\usepackage{metrixware}" before "\begin{document}"
+%%
+%%===================================================================
+
+
+
+\ProvidesPackage{metrixware}[2014/09/30, v1.00 Metrixware documentation]
+\NeedsTeXFormat{LaTeX2e}
+
+%extensions
+\RequirePackage[french, english]{babel}
+\RequirePackage[dvips]{graphicx}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{times}
+\RequirePackage{float}
+\RequirePackage{cite}
+\RequirePackage{array}
+\RequirePackage{listings}
+\RequirePackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\RequirePackage{url}
+\RequirePackage{longtable}
+\RequirePackage{color}
+\RequirePackage{tcolorbox}
+\RequirePackage{colortbl}
+\RequirePackage{eurosym}
+\RequirePackage[page]{totalcount}
+\RequirePackage{multicol}
+\RequirePackage{setspace}
+\RequirePackage{rotating}
+\RequirePackage{fancyhdr}
+\RequirePackage{fancybox}
+\RequirePackage{fancyref}
+\RequirePackage{epstopdf}
+\RequirePackage{amsmath}
+\RequirePackage{amsfonts}
+\RequirePackage{amssymb}
+\RequirePackage{wasysym}
+\RequirePackage{xy}
+\RequirePackage[export]{adjustbox} % add valign in includegraphics
+\RequirePackage{tabularx}
+\RequirePackage{lastpage}
+\RequirePackage{footnote}
+
+%\addtolength{\oddsidemargin}{-2cm}
+%\addtolength{\evensidemargin}{-2cm}
+\RequirePackage{tikz}
+
+%BOOK style management
+\newenvironment{mainmatter}
+{}
+{}
+
+%TABLE OF CONTENTS
+\RequirePackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	pdfborder={0 0 0},
+	pdfauthor={Metrixware},
+	bookmarksopen=true,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=blue
+}
+
+
+%LAYOUT
+\RequirePackage{wallpaper}
+\RequirePackage[top=25mm, bottom=25mm, left=25mm , right=20mm]{geometry}
+\textwidth=165mm
+
+%FONT
+\RequirePackage{fontspec,lipsum}
+\setmainfont[UprightFont = *-Light,BoldFont = *-Bold,ItalicFont = *-LightItalic,BoldItalicFont = *-BoldItalic]{OpenSans}
+
+%PARAGRAPH
+\RequirePackage{changepage}
+\RequirePackage{parskip}
+\linespread{1}\selectfont
+
+\newenvironment{content}
+{}
+{}
+
+%COLORS
+\ifx\mxprimarycolor\undefined
+	\newcommand{\mxprimarycolor}{0,144,194}
+\fi
+\definecolor{ColorOneDoc}{RGB}{\mxprimarycolor}
+
+\ifx\mxsecondarycolor\undefined
+	\newcommand{\mxsecondarycolor}{153,153,153}
+\fi
+\definecolor{ColorTwoDoc}{RGB}{\mxsecondarycolor}
+
+\definecolor{BlackDoc}{RGB}{32,32,32}
+\definecolor{DarkGrayDoc}{RGB}{84,84,84}
+\definecolor{LightGrayDoc}{RGB}{244,244,244}
+
+%LISTS
+\RequirePackage{enumitem}
+\setlist{noitemsep}
+\setlist[itemize,1]{label=$\blacksquare$,font=\color{ColorOneDoc},leftmargin=*}
+\setlist[itemize,2]{label=$\blacksquare$,font=\color{ColorTwoDoc}}
+\setenumerate[1]{font=\bfseries\color{white},label=\protect\fcolorbox{ColorOneDoc}{ColorOneDoc}{\arabic*},itemsep=10pt,leftmargin=*}
+\setenumerate[2]{label={(\arabic*}),itemsep=10pt,leftmargin=*}
+
+%GRAPHICS
+\newcommand{\mximg}[2]{\\[0.5ex]\includegraphics[scale=#1]{#2}}
+\newcommand{\mximgtext}[1]{\includegraphics[valign=c,scale=0.75]{#1}}
+\newcommand{\mximage}[1]{\mximg{0.75}{#1}\\[0.5ex]}
+\newcommand{\mxlargeimage}[1]{\mximg{0.65}{#1}\\[0.5ex]}
+\newcommand{\mxhugeimage}[1]{\mximg{0.50}{#1}\\[0.5ex]}
+\newcommand{\mxtip}[1]{\marginpar{\begin{flushright}
+\includegraphics[valign=c,scale=0.50]{tip.png}\textit{ Tip:}
+\end{flushright}}\textit{#1}}
+\newcommand{\mxcaution}[1]{\Large\textcolor{red}{\textbf{\RHD \marginpar{\begin{flushright}
+\includegraphics[valign=c,scale=0.75]{warning.png}
+\end{flushright}}{#1\LHD}}}\normalsize}
+
+%TITLES
+\RequirePackage[explicit]{titlesec}
+
+% Font "Open Sans" does not support Small Caps --> don't use scshape
+\newcommand*\chapterlabel{}
+\titleformat{\chapter}
+	{
+		\gdef\chapterlabel{}
+		\normalfont\huge\bfseries %\scshape
+	}
+	{
+		\gdef\chapterlabel{\thechapter .\ }
+	}
+	{
+		0pt
+	}
+	{
+		\begin{tikzpicture}[remember picture,overlay]
+			\node[yshift=-3cm] at (current page.north west)
+			{
+				\begin{tikzpicture}[remember picture, overlay]
+					\draw[fill=ColorOneDoc,color=ColorOneDoc] (0,0) rectangle (\paperwidth,3cm);
+					\node[anchor=west,xshift=0.07\paperwidth,rectangle,rounded corners=20pt,fill=ColorOneDoc]{\color{White}\chapterlabel#1};
+				\end{tikzpicture}
+			};
+		\end{tikzpicture}
+	}
+\titlespacing*{\chapter}{0pt}{50pt}{-70pt}
+
+
+\newcommand*\sectionlabel{}
+\titleformat{\section}
+	{
+		\gdef\sectionlabel{}
+		\normalfont\Large\bfseries %\scshape
+	}
+	{
+		\gdef\sectionlabel{\thesection\ }
+	}
+	{
+		0pt
+	}
+	{
+		\begin{tikzpicture}[remember picture,overlay]
+			\node[xshift=0cm,yshift=-1cm] at (0,0)
+			{
+				\begin{tikzpicture}[remember picture, overlay]
+					\draw[fill=ColorOneDoc,color=ColorOneDoc] (0,0) rectangle (\textwidth,0.9cm);
+					\node[anchor=west,xshift=5,yshift=12,rectangle,rounded corners=0pt,fill=ColorOneDoc]{\color{White}\sectionlabel#1};
+				\end{tikzpicture}
+			};
+		\end{tikzpicture}
+	}
+\titlespacing*{\section}{-4mm}{10pt}{30pt}
+
+
+%HEADER & FOOTER
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+%\setlength{\headheight}{14.6pt}
+
+
+\fancypagestyle{plain}{
+
+}
+\pagestyle{plain}
+
+%TABLE & BORDER
+\newcommand{\thickhline}{%
+	\noalign {\hrule height 2pt}%
+}
+% COLUMN
+\newcolumntype{L}[1]{>{\columncolor{ColorOneDoc}\color{white}\bfseries}#1}
+\newcolumntype{§}{!{\vrule width 2pt}}
+\newcolumntype{M}[1]{>{\raggedright}m{#1}}
+
+

@@ -1,0 +1,121 @@
+%%
+%% This is file `mxwcover.tex' v 1.00
+%%
+%% Author Claude BIANCHI
+%%   October 10, 2014
+%% 
+%% Define Cover page for Metrixware documentation
+%% based on the work of Antoine FLOC'H (TOCEA)
+%%
+%% version 1.00, 2014/10/10:
+%%               - first release
+%%
+%%
+%%===================================================================
+%% This uses these tokens:
+%% - mxtitle: title of document (mandatory - stop if not present)
+%% - mxsubtitle: subtitle of document (empty by default)
+%% - mxauthor: author of document (use \author if present)
+%% - mxdate: date of document (use \date if present)
+%% - mxabout: block containing about (text, table, figure, or anything else)
+%% - mxcover: filename of the backgroud picture of the first page
+%% - mxlogo: filename of the product logo picture of the first page
+%%
+%% usage: in your main document, insert "\include{mxwcover}" before "\begin{document}"
+%%
+%%===================================================================
+
+\makeatletter
+% Une commande semblable \rlap ou \llap, mais centrant son argument
+\def\clap#1{\hbox to 0pt{\hss #1\hss}}
+
+% Une commande centrant son contenu (a utiliser en mode vertical)
+\def\ligne#1{%
+	\hbox to \hsize{%
+		\vbox{ #1}}}%
+\def\picligne#1{%
+	\hbox to 8cm {%
+		\vbox{ #1}}}
+
+% Une comande qui met son premier argument a gauche, le second au
+% milieu et le dernier a droite, la premiere ligne de chacune de ces
+% trois boites coincidant
+\def\haut#1#2#3{%
+	\hbox to \hsize{%
+		\rlap{\vtop{\raggedright #1}}%
+		\hss
+		\clap{\vtop{\centering #2}}%
+		\hss
+		\llap{\vtop{\raggedleft #3}}}}
+
+% Idem, mais cette fois-ci, c'est la derniere ligne
+\def\bas#1#2#3{%
+	\hbox to \hsize{%
+		\rlap{\vbox{\raggedright #1}}%
+		\hss
+		\clap{\vbox{\centering #2}}%
+		\hss
+		\llap{\vbox{\raggedleft #3}}}}
+
+% La commande \maketitle
+\def\maketitle#1#2{ %
+	\ifx\mxcover\undefined
+	\else
+	\ThisULCornerWallPaper{1.00}{\mxcover}
+	\fi
+	\thispagestyle{empty}\vbox to \vsize{ %
+		\vspace{3cm}
+		\par %
+		\begin{center}
+			\ifx\mxlogo\undefined
+			\else
+			\includegraphics*{\mxlogo}
+			\fi
+			\vspace{1cm}
+			\par %
+			\colorbox{#1}{\textcolor{#2}{
+				\begin{minipage}{0.5\textwidth}
+					\begin{center}
+						\Huge\strut\textbf{\mxtitle}\normalsize \\
+						\vspace{0.5cm}
+						\Large\textit{\mxsubtitle}
+					\end{center}
+				\end{minipage}
+			}} \par
+		\end{center}
+		\vspace{8cm}
+		\ifx\mxabout\undefined
+		\else
+		\arrayrulecolor{ColorTwoDoc}
+		{\begin{flushright}
+			\renewcommand{\arraystretch}{1.5}\mxabout \\
+		\end{flushright}}
+		\arrayrulecolor{black}
+		\fi
+%		\par
+%		\vspace{3cm}
+		\ligne{\Large}
+		\vfill
+	} %
+	\cleardoublepage
+}
+
+
+% Checks presence tokens
+\ifx\mxtitle\undefined
+	\errmessage{>>>Please define `mxtitle' before.<<<}
+	\stop
+\fi
+\ifx\mxsubtitle\undefined
+	\newcommand{\mxsubtitle}{} % empty by default
+\fi
+\ifx\mxauthor\undefined
+\else
+	\author{\mxauthor}
+\fi
+\ifx\mxdate\undefined
+\else
+	\date{\mxdate}
+\fi
+
+\makeatother

@@ -1,0 +1,148 @@
+Descriptif
+----------
+
+Le répertoire commons contient les fichiers globaux qui sont mis dans l'installation de Tex Live
+
+Un répertoire est créé pour chaque produit (Cobos, SC4Eclipse, ...).
+Chacun d'entre-eux contient des sous-répertoires par type de documentation (UserGuide, QuickStart, ...).
+
+La documentation se compose de la manière suivante :
+- Document LaTex maître
+- un dossier frames contenant les fichiers TeX contenant les chapitres (en général 1 par fichier)
+- un dossier images contenant l'ensemble des images (format ping) apparaissant dans le document
+- un dossier Output qui recevra le résultat de la génération (fichiers PDF ou HTML)
+- un dossier contenant des données utilisées pour créer des images (ici des images au format Paint.Net qui préserve les calques).
+
+
+Modèle de document maître
+-------------------------
+
+\documentclass[a4paper,10pt]{report}
+
+%-------------------------------------------------------------------------------
+% set colors
+\newcommand{\mxprimarycolor}{<R>,<V>,<B>}
+\newcommand{\mxsecondarycolor}{<r>,<v>,<b>}
+
+\usepackage{metrixware}
+%-------------------------------------------------------------------------------
+% set tokens about this document (product name, version, author, etc.)
+\newcommand{\mxproduct}{<producname>}
+\newcommand{\mxversion}{<version>}
+\newcommand{\mxcompany}{<company>}
+\newcommand{\mxurl}{<website>}
+\newcommand{\mxdate}{\number\month/\number\day/\number\year}
+\newcommand{\mxauthor}{<author>}
+\newcommand{\mxrevision}{<revision number>}
+
+% set tokens for mxwcover
+\newcommand{\mxtitle}{\mxproduct{ <document type>}}
+\newcommand{\mxsubtitle}{version \mxversion}
+\newcommand{\mxcover}{<cover image>}
+\newcommand{\mxlogo}{<logo image>}
+\newcommand{\mxabout}{<about block text>}
+
+%-------------------------------------------------------------------------------
+% images directorties
+\graphicspath{{./images/}{./images/\mxproduct/}}
+%-------------------------------------------------------------------------------
+% First page
+\lhead{}
+\chead{}
+\rhead{}
+\include{mxwcover}
+
+% Defines Header & footer for other pages
+\lhead{}
+\chead{}
+\rhead{\bfseries\textcolor{ColorOneDoc}{\mxtitle}}
+\cfoot{\bfseries\textcolor{ColorOneDoc}{\thepage/\pageref*{LastPage}}}
+
+% éviter qu'une note ne s'étale sur plusieurs pages
+\interfootnotelinepenalty=10000
+
+%-------------------------------------------------------------------------------
+% Start document
+\begin{document}
+
+% note in left marge
+\reversemarginpar
+
+\pdfbookmark[0]{\mxtitle}{doc}
+
+\ThisLLCornerWallPaper{1.00}{<footer image>}
+\maketitle{ColorOneDoc}{white}
+\ClearWallPaper
+\onehalfspacing
+\clearpage\newpage
+\pagestyle{fancy}
+\onehalfspacing
+
+\ULCornerWallPaper{1.00}{<header image>}
+\LLCornerWallPaper{1.00}{<footer image>}
+
+% Sections Reference & Copyright
+\pdfbookmark[1]{Reference}{ref}
+\input{frames/reference}
+\pdfbookmark[1]{Copyright}{copy}
+\input{frames/copyright}
+
+\newpage
+
+% Contents
+\pdfbookmark[1]{Contents}{contents}
+\tableofcontents
+
+% Chapters
+\mainmatter
+\include{frames/<chapter1 file>}
+\include{frames/<chapter2 file>}
+...
+\include{frames/<chapterN file>}
+
+\end{document}
+
+
+Des variables sont définies afin de faciliter la mise en production de documentation en marque blanche
+- mxproduct : nom du produit
+- mxversion : version du produit
+- mxcompany : nom de la société du produit
+- mxurl :  url du site web associé au produit (ou société)
+- mxdate : date du document
+- mxauthor : auteur du document (utilisé par mxcover)
+- mxrevision : numéro de révision du document
+D'autres variables peuvent être définies.
+
+Il va s'en dire que toutes ces variables sont à utilser dans l'ensemble des fichiers constituant le document.
+Par exemple, ne pas mettre le nom du produit, mais utilser la macro \mxproduct.
+
+Pour l'instant, ce modèle est plutôt orienté vers la production de PDF.
+
+
+metrixware.sty
+--------------
+
+Ce package défini les styles pour la documentation Metrixware.
+Pour customiser les couleurs, il a deux valeurs à définir avant l'appel de \usepackage{metrixware}
+- mxprimarycolor: primary color
+- mxsecondarycolor: secondary color
+
+Par exemple pour Cobos :
+\newcommand{\mxprimarycolor}{52,155,151}
+\newcommand{\mxsecondarycolor}{216,216,228}
+
+
+mxcover.text
+------------
+Ce fichier contient la définition de la macro maketitle qui définie la couverture du document.
+Elle utilise les variables suivantes :
+- mxtitle : titre du document (à définir obligatoirement)
+            ex. : \newcommand{\mxtitle}{Cobos Quick Start}
+- mxsubtitle : sous-titre du document (vide par défaut)
+               ex. : \newcommand{\mxsubtitle}{version 3.4}
+- mxauthor: autheur du document (appel de \author si présent)
+- mxdate : date du document (appel de \date si présent)
+- mxabout : bloc en bas de page pouvant contenir du texte, tableau, ou n'importe quoi d'autre)
+- mxcover : nom du fichier contenant l'image de fond de la première page
+- mxlogo : nom du fichier contenant l'image d'un logo situé au dessus du titre
+

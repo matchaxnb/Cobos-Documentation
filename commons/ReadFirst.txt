@@ -1,0 +1,26 @@
+Vous devez disposer de TeX Live 2014 sur votre machine.
+
+Le contenu de ce répertoire doit être copier dans le sous-répertoire tex\latex\local
+du répertoire pointé par la variable TEXMFLOCAL définie dans la configuration de Tex Live.
+Exécuter l'utilitaire texhash après la copie.
+
+En général
+Linux :
+TEXMFLOCAL = /usr/local/texlive/texmf-local
+Windows :
+TEXMFLOCAL = X:\texlive\texmf-local
+
+
+Pour les systèmes Windows, vous pouvez utiliser la distribution partagée sur
+\\MXWSHARE\Tex\texlive. Il suffit de lancer W32client.bat pour que sur votre
+système le groupe "My Custom TeX Live 2014" soit créé dans le menu Démarrer.
+Dans ce cas, rien n'est copié sur votre machine, seul le chemin de Tex Live
+est ajouté dans la variable PATH de votre environnement utilisateur.
+Pour plus d'information, vous pouvez consulter la page suivante :
+http://tug.org/texlive/w32client.html
+
+
+En cas de problème de génération, lancez la commande 
+"luaotfload-tool --update" (peut prendre 5 mins)
+puis, refaite la génération.
+
